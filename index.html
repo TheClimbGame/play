@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Climb.</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="icon"  type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQAAVzABAEAjBQAaDwYAWjUGAGE6CQBrQQ0ATS8PAFhAJwBUQC8AbFI6AHVXPACBZk4A4NrWAPb19QAAAAAAAMmZmZmZmgAJIwAAAAAAcMIjPjA+PjAKpxIuMDMzMAm0Ii4zMzMACaIiLt3dMAAJtyIuIzPQAAm0Un5yM+IzKLRkfncy4iIotRF+dyLkIiq0QX53F+EiGrQUTkd34iIatEVu7u5iIVrBVVRBRFRVbAtGZGZla2uwAMu7u7u8vADAAwAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAADAAwAA" />
+		<meta name="Generator" content="Processing" />
+		<!-- - - - - - - - - - - - - - - - - - - - - 
+		+
+		+    Wondering how this works? 
+		+
+		+    Go to: http://processing.org/
+		+    and: http://processingjs.org/
+		+
+		+ - - - - - - - - - - - - - - - - - - - - -->
+		<style type="text/css">
+	body {
+		background-color: #b5d5f1; 
+		font-size: 11px; 
+		font-weight: normal; 
+		margin-top:0px;
+		margin-bottom:0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		padding: 0px 0px 0px 0px;
+	}
+	a img { 
+		margin-top:0px;
+	}
+	h1{
+		text-align: center;
+		font-family: orange;
+		font-size: 180px;
+		margin-top: 20px;
+		margin-bottom: 25px;
+		z-index: -20;
+	}
+	h1:hover{
+		font-size: 190px;
+	}
+	@font-face {
+		font-family: orange;
+		src: url(orangefont.ttf);
+	}
+	@font-face {
+		font-family: champ;
+		src: url(champ.ttf);
+	}
+	canvas { 
+		display: block; 
+		outline: 0px; 
+		margin-bottom: 0px; 
+		z-index:-1;
+	}
+	canvas:hover{
+		width: 760px;
+		height: 610px;
+	}
+	#content { 
+		margin: 0px auto 0px auto; 
+		width: 740px; 
+		height: 600px;
+		border-radius: 20px;
+		background-color: #FFFFFF;
+		z-index:1;
+		box-shadow: 3px 3px 25px #36454f;
+	}
+	#content:hover{
+		width: 760px;
+		height: 610px; 
+		box-shadow: 11px 11px 30px #36454f;
+	}
+	marquee{
+		position: fixed;
+		width: 100%;
+	}
+	#anything{
+		z-index:-1;
+		border-radius: 20px;
+	}
+	#cloudback{
+		z-index:-2;
+		top: -600px;
+	}
+	#cloudsmallback{
+		z-index:-1;
+		top: 100px;
+	}
+	#cloudsmallback2{
+		z-index:-1;
+		top: 600px;
+	}
+	#cloud{
+		z-index:0;
+		top:300px;
+	}
+	p{
+		margin: 40px auto 0px auto; 
+		padding: 40px 40px 40px 40px;
+		border-radius: 20px;	
+		width: 670px;
+		color: #000000;
+		z-index:20;	
+		background:rgba(255,255,255,0.9);
+		font-family: champ;
+		font-size: 30px;
+		box-shadow: 2px 2px 15px #36454f;
+	}
+	p:hover{
+		padding: 45px 50px 45px 50px;
+		box-shadow: 11px 11px 30px #36454f;
+	}
+	.headers{
+		text-align: center;
+		font-size: 50px;
+		padding: 20px 40px 20px 40px;
+	}
+	.headers:hover{
+		padding: 25px 50px 25px 50px;
+	}
+	.img2{
+		position: fixed;
+		width=100%;
+		bottom:0px;
+		left: 0px;
+		z-index: -100;
+		align: center;
+		margin: 0px 0px 0px 0px;
+		padding: 0px 0px 0px 0px;
+
+	}
+	.face{
+		width: 200px;
+		border-radius: 100px;
+		margin: 80px 40px 40px 40px;
+		box-shadow: 5px 5px 20px #36454f;
+		z-index: 5;
+		
+		
+	}
+	.face:hover{
+		width: 220px;
+		border-radius: 110px;
+		box-shadow: 11px 11px 30px #36454f;
+	}
+	.faceinfo{
+		display: none;
+		border-radius:30px;
+		width: 400px;
+		position: relative;
+		top: -320px;
+		left: 200px;
+		box-shadow: 11px 11px 30px #36454f;
+		z-index: -1;
+		
+	}
+	.blurred{
+		filter: blur(4px);
+
+		-webkit-filter: blur(4px);
+		-moz-filter: blur(4px);
+		-o-filter: blur(4px);
+		-ms-filter: blur(4px);
+	}
+	#authors{
+		width: 1900px;
+		height: 600px;
+		align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	td{
+		vertical-align:top;
+		margin: auto 100px auto auto;
+		z-index: -1;
+	}
+	#speech{
+		position: absolute;
+        top: 300px;
+		left: 400px;
+		width: 0px;
+	}
+		</style>
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var w=1;
+			var le=400;
+			var t=300;
+			var scrolled=false;
+			function slideIn() {
+				if (w<=350) {
+					w=w+.09*w;
+					le=le-6;
+					t=t-4;
+				document.getElementById('speech').style.width = w+'px';
+				document.getElementById('speech').style.top = t+'px';
+				document.getElementById('speech').style.left = le +'px';
+				setTimeout(slideIn,7); // call doMove() in 20 msec
+				}
+				else{
+					wobbleRight();
+				}
+			}
+			function wobbleRight(){
+				if (le<=90) {
+					le=le+8;
+					t=t+6.4;
+					w=w-.02*w;
+					document.getElementById('speech').style.width = w+'px';
+					document.getElementById('speech').style.top = t+'px';
+					document.getElementById('speech').style.left = le +'px';
+					setTimeout(wobbleRight,5);
+				}
+				else{
+					wobbleLeft();
+				}
+			}
+			function wobbleLeft(){
+				if (w<=300) {
+					le=le-2.05;
+					w=w+2;
+					document.getElementById('speech').style.width = w+'px';
+					document.getElementById('speech').style.top = t+'px';
+					document.getElementById('speech').style.left = le +'px';
+					setTimeout(wobbleLeft,9);
+				}				
+			}
+			function slideOut() {
+				if (w>=1) {
+					w=w-.07*w;
+					le=le+6;
+					t=t+4;
+				document.getElementById('speech').style.width = w+'px';
+				document.getElementById('speech').style.top = t+'px';
+				document.getElementById('speech').style.left = le +'px';
+				setTimeout(slideOut,7); // call doMove() in 20 msec
+				}
+				else{
+					document.getElementById('speech').style.display = 'none';
+					scrolled=true;
+				}
+			}
+			function wobbleRightOut(){
+				if (w<=350) {
+					le=le-8;
+					t=t-6.4;
+					w=w+.02*w;
+					document.getElementById('speech').style.width = w+'px';
+					document.getElementById('speech').style.top = t+'px';
+					document.getElementById('speech').style.left = le +'px';
+					setTimeout(wobbleRightOut,5);
+				}
+				else{
+					slideOut();
+				}
+			}
+			function wobbleLeftOut(){
+				if (le<=90) {
+					le=le+2.05;
+					w=w-2;
+					document.getElementById('speech').style.width = w+'px';
+					document.getElementById('speech').style.top = t+'px';
+					document.getElementById('speech').style.left = le +'px';
+					setTimeout(wobbleLeftOut,9);
+				}
+				else{
+					wobbleRightOut();
+				}
+			}
+			function showStuff(id) {
+				document.getElementById(id).style.display = 'block';
+				if(id !='k'){
+					document.getElementById('kp').className+= " blurred";
+				}
+				if(id !='v'){
+					document.getElementById('vp').className+= " blurred";
+				}
+				if(id !='m'){
+					document.getElementById('mp').className+= " blurred";
+				}
+				if(id !='e'){
+					document.getElementById('ep').className+= " blurred";
+				}
+			}
+			function hideStuff(id) {
+				document.getElementById(id).style.display = 'none';
+				if(id !='k'){
+					document.getElementById('kp').className= " face";
+				}
+				if(id !='v'){
+					document.getElementById('vp').className= " face";
+				}
+				if(id !='m'){
+					document.getElementById('mp').className= " face";
+				}
+				if(id !='e'){
+					document.getElementById('ep').className= " face";
+				}
+			}
+			function hideNotice(){
+				if (scrolled) {
+					document.getElementById('speech').style.display = 'none';
+				}
+				else{
+					wobbleLeftOut();
+				}
+			}
+		</script>
+		<script src="processing.js" type="text/javascript"></script>
+		<script type="text/javascript">
+// convenience function to get the id attribute of generated sketch html element
+function getProcessingSketchId () { return 'anything'; }
+</script>
+	</head>
+	<body>
+				<marquee scrollamount="4"  id="cloudback"><img src="cloudback0.png"></marquee>
+				<marquee scrollamount="7"  id="cloudsmallback"><img src="cloudsmallback.png"></marquee>
+				<marquee scrollamount="10"  id="cloudsmallback2"><img src="cloudsmallback.png"></marquee>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<h1>The Climb.</h1>
+		<img id="speech" src="bubble.png">
+		<audio  autoplay loop >
+			<source src="joined.mp3" type="audio/mpeg" >
+		</audio>
+		<div id="content" onclick="hideNotice()" onmouseover="slideIn()">
+			<div>
+				<canvas id="anything" data-processing-sources="videoGameFinal.pde" 
+						width="740" height="600" >
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+	    	</div>
+			<h1></h1>
+			<a href="videoGameFinal.pde"></a> 
+			
+			 <a href="http://processing.org" title="Processing"></a>
+			<a href="http://processingjs.org" title="Processing.js"></a>
+			
+		</div>
+		<div id="explanation">
+			<p class="headers">About</p>
+			<p>This game aims to maximize the potential of every person. Everyone, especially girls, doubts their ability to succeed. This phenomenon, often referred to as imposter syndrome, is often one of the biggest obstacles a person can face, especially in their career. By recognizing your own negative thoughts as false, you can disregard them and focus on the fact that you are a skilled, competent individual.</p>
+			<p class="headers">The Authors</p>
+			<table id="authors" align="center" >
+				<tr>
+					<td id="kd" onmouseover="showStuff('k')" onmouseout="hideStuff('k')">
+					<a href="#"><img id="kp" class="face" src="k1.png" ></a>
+					<img  id="k" class="faceinfo" src="k2.png" ></td>
+					<td id="vd" onmouseover="showStuff('v')" onmouseout="hideStuff('v')">
+					<a href="#"><img id="vp"  class="face" src="v1.png" ></a>
+					<img  id="v" class="faceinfo" src="v2.png" ></td>
+					<td id="md" onmouseover="showStuff('m')" onmouseout="hideStuff('m')">
+					<a href="#"><img id="mp" class="face" src="m1.png" ></a>
+					<img  id="m" class="faceinfo" src="m2.png" ></td>
+					<td id="ed" onmouseover="showStuff('e')" onmouseout="hideStuff('e')">
+					<a href="#"><img id="ep" class="face" src="e1.png" ></a>
+					<img  id="e" class="faceinfo" src="e2.png" ></td>
+				</tr>
+			</table>
+			</div>
+		<img src="microsoftlogo.png" width="290px" align="left">
+		<img src="gwclogo.png" width="230px" align="left">"
+		</div>
+
+		<img  class="img2" style="width: 100%" src="bottombackground.png">
+	</body>
+</html>
